@@ -1,6 +1,6 @@
 # JAVA - JUNE 2022
 
-<!-- [![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/jupiterorbita/JAVA_JUNE_2022) -->
+[![Open in Visual Studio Code](https://img.shields.io/badge/open%20in%20vscode-blue??style=for-the-badge&logo=visualstudiocode)](https://open.vscode.dev/jupiterorbita/JAVA_JUNE_2022)
 
 ## clone this repo, then `git pull` to get the latest changes
 
