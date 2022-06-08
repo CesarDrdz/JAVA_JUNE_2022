@@ -27,6 +27,9 @@ public class TestNinja {
         davita.attack(palmer, 1);
         palmer.simpleAttack(davita, 2);
         
+        Sensei cesar = new Sensei("Cesar");
+        String wiseMessage = cesar.sayWisdom();
+        System.out.println(wiseMessage);
         
         
         // Ninja.numberOfNinjasCreated;

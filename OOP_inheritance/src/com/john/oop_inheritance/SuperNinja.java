@@ -5,10 +5,14 @@ public class SuperNinja extends Ninja {
 	private Boolean integrity;
 	private int laserPower;
 	
+//	CONSTRUCTOR(s)
+//	overloading
 	public SuperNinja(String name, String belt, int stars) {
 		super(name, belt, stars);
 		this.laserPower = 20;
 	}
+//	public SuperNinja() {};
+	
 	
 	public void fly() {
 		if (this.getBelt().equals("black")) {
