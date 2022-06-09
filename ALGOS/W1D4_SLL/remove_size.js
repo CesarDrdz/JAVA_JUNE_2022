@@ -5,9 +5,36 @@ class Node {
     }
 }
 
+
 class SLL {
     constructor() {
         this.head = null;
+        // this.size = 0;
+    }
+
+    // return true or false if this.head is null
+    isEmpty() {
+        return this.head == null;
+    }
+
+    // add given node to the head, if it exists. return void
+    // coolSll.addToFront(new Node(123))
+    addToFront(node) {
+        // var temp = this.head;
+        node.next = this.head;
+        this.head = node;
+        // this.size++;
+    }
+    // myList.addToFront(new Node(22));
+
+    // when a pointer is to the LEFT of an equal sign, we are CHANGING it
+    // when a pointer is to the RIGHT of an equal sign, we are READING it
+
+    // create a new node with given data, add it to the head. return void
+    addDataToFront(val) { // 10
+        var newNode = new Node(val); // create a new node with the data
+        newNode.next = this.head; // set the new node's next to the head
+        this.head = newNode; // move the head to the new node
     }
 
     // console log (print) the data of every node in the current list
@@ -15,11 +42,13 @@ class SLL {
     read() {
         // console.log(this.head.next.data);
         // create a temp var to run through
-        var turtle = this.head;
-        while(turtle != null) {
-            console.log(turtle.data);
-            // move turtle
-            turtle = turtle.next;
+        var runner = this.head;
+        var size = 0;
+        while (runner != null) {
+            console.log(runner.data);
+            // size++; // O(n)
+            // move runner
+            runner = runner.next;
 
         }
     }
@@ -47,33 +76,9 @@ class SLL {
         var temp = this.head;
         this.head = this.head.next;
         temp.next = null;
+        this.size--;
         return temp;
 
-    }
-
-    // return true or false if this.head is null
-    isEmpty() {
-        return this.head == null;
-    }
-
-    // add given node to the head, if it exists. return void
-    // coolSll.addToFront(new Node(123))
-    addToFront(node) {
-        // var temp = this.head;
-        node.next = this.head;
-        this.head = node;
-    }
-
-    // myList.addToFront(new Node(22));
-
-    // when a pointer is to the LEFT of an equal sign, we are CHANGING it
-    // when a pointer is to the RIGHT of an equal sign, we are READING it
-
-    // create a new node with given data, add it to the head. return void
-    addDataToFront(data) { // 10
-        var newNode = new Node(data); // create a new node with the data
-        newNode.next = this.head; // set the new node's next to the head
-        this.head = newNode; // move the head to the new node
     }
 
     // if data is contained within the current list, delete it.
@@ -82,13 +87,41 @@ class SLL {
     // consider the edge case if you have to delete the head node
     // consider the edge case your list is empty
     // consider the edge case that your list does not contain the data
-    delete(data) {    }
+    delete(data) {
+        // create a runner
+        let runner = this.head;
+        // check if head is empty
+        if (!runner) {
+            return;
+        }
+        // check if head is target
+        if (runner.data == data) {
+            this.removeFromFront();
+            return;
+        }
+
+        // while next exists
+        while (runner.next) {
+            // check if runner next is data
+            if (runner.next.data == data) {
+                // remove it and return
+                runner.next = runner.next.next;
+                this.length--;
+                return;
+            }
+            // otherwise traverse
+            runner = runner.next;
+        }
+    }
 
     // runner here is undefined
     // return the size of the current linked list
     // BONUS: how might you do this without linearly traversing the list? O(1)
     // you may have to change other methods within this class... 
-    size() { }
+    size() { 
+        // similar to read()
+        return this.size; //O(1)
+    }
 }
 
 
