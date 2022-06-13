@@ -1,12 +1,12 @@
 /* Stacks
-A stack is a LIFO data structure
-LAST IN, FIRST OUT
-LIFO / FILO
-push - add to top
-pop - remove from top
-peek - check the top
-isEmpty - check if the stack is empty, true/false
-length - return size of stack
+    A stack is a LIFO data structure
+    LAST IN, FIRST OUT
+    LIFO / FILO
+    push - add to top
+    pop - remove from top
+    peek - check the top
+    isEmpty - check if the stack is empty, true/false
+    length - return size of stack
 */
 
 class Node {
