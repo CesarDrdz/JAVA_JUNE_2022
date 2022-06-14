@@ -23,12 +23,10 @@ public class BookService {
         return bookRepository.findAll();
     }
     
-    
     // CREATE
     public Book createBook(Book b) {
         return bookRepository.save(b);
     }
-    
     
     // READ ONE
     public Book findBook(Long id) {

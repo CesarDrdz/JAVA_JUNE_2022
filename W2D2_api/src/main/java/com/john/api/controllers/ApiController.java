@@ -15,13 +15,13 @@ import com.john.api.services.BookService;
 public class ApiController {
 	
 	private final BookService bookService;
-
+	
 	public ApiController(BookService bookService) {
 		this.bookService = bookService;
 	}
 
 	@RequestMapping("/api/books")
-	public List<Book> index() {
+	public List<Book> index() {		
 		return bookService.allBooks();
 	}
 
