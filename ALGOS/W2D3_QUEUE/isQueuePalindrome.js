@@ -5,7 +5,6 @@
 class slStack {
     constructor() {
         this.top = null; // this.head, this.end
-        // this.length = 0;
     }
 
     // add to top
@@ -39,9 +38,11 @@ class slStack {
     // check if empty
     isEmpty() {
             return this.top === null;
-        } // length getter
+        } 
+
+    // length getter 
     getLength() {
-        // return this.length;
+        // 
     }
 }
 
@@ -51,9 +52,9 @@ class Queue {
     constructor() {
         this.front = null; // sometimes called head "front of the line"
         this.back = null; // sometimes called rear or tail "back of the line"
-        // this.length = 0;
     }
 
+    // add node to the back
     enqueue(node) {
         if (this.back === null) { // if back is null, list is empty
             this.back = node;
