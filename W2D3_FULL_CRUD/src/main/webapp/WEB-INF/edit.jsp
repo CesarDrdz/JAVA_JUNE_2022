@@ -21,12 +21,14 @@
 </head>
 <body>
 	<div class="container">
-		<h1>create</h1>
+		<h1>UPDATE</h1>
 		<a href="/books">/books</a>
 		<p>x is ${x }</p>
-		<form:form action="/books" 
-			method="post" 
-			modelAttribute="book">
+		<form:form action="/books/${thisBook.id }" 
+			method="post"
+			modelAttribute="thisBook">
+
+			<input type="hidden" name="_method" value="put">
 			<p>
 				<form:errors style="color: red" path="*" />
 			</p>

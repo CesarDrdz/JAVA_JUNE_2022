@@ -27,8 +27,6 @@ public class BookService {
 	
 //	READ ONE
 	public Book findBook(Long id) {
-		
-		
 		Optional<Book> optionalBook = bookRepo.findById(id);
 		
 //		return optionalBook.isPresent() ? optionalBook.get() : null;
@@ -39,4 +37,24 @@ public class BookService {
 			return null;
 		}
 	}
+	
+//	UPDATE:
+	public Book updateBook(Book b) {
+		return bookRepo.save(b);
+	}
+	
+//	DELETE
+	public void deleteBook(Long id) {
+		bookRepo.deleteById(id);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

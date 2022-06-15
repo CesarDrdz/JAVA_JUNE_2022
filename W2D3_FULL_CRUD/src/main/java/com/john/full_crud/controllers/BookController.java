@@ -8,10 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.john.full_crud.models.Book;
 import com.john.full_crud.services.BookService;
@@ -55,6 +58,7 @@ public class BookController {
 //		return "new.jsp";
 //	}
 	
+//	---- CREATE - RENDER PAGE ------
 //	SHOW THE CREATE page and pass in an empty book obj
 	@GetMapping("/books/new")
 	public String createBookPage(
@@ -63,10 +67,12 @@ public class BookController {
 		return "new.jsp";
 	}
 	
+//	----- CREATE - POST METHOD -----
 //	POST to this route and accept the obj - validate it and,
 //	either re-render with errors or redirect
 	@PostMapping("/books")
-	public String createBook(@Valid @ModelAttribute("book") Book book, 
+	public String createBook(
+			@Valid @ModelAttribute("book") Book book, 
 			BindingResult result, Model model) {
 		
 //		check the book
@@ -81,8 +87,41 @@ public class BookController {
 	}
 	
 	
+//	-- RENDER UPDATE PAGE ---
+	@GetMapping("/books/{id}/edit")
+	public String editPage(@PathVariable("id") Long id, Model model) {
+		Book thisBook = bookServ.findBook(id);
+		model.addAttribute("thisBook", thisBook);
+		return "edit.jsp";
+	}
+	
+	@PutMapping("/books/{id}")
+    public String update(@Valid @ModelAttribute("thisBook") Book editedBook, BindingResult result) {
+        
+		System.out.println(result);
+		if (result.hasErrors()) {
+            return "edit.jsp";
+        } else {
+            bookServ.updateBook(editedBook);
+            return "redirect:/books";
+        }
+    }
 	
 	
+	@DeleteMapping("/books/{id}")
+	public String destroy(@PathVariable("id") Long id, RedirectAttributes flash) {
+		bookServ.deleteBook(id);
+		flash.addFlashAttribute("deleteSuccess", "you have deleted a book!");
+		return "redirect:/books";
+	}
+
+//	DO NOT DO A GET FOR A DELETE
+//	@GetMapping("/books/{id}/delete")
+//	public String destroyGet(@PathVariable("id") Long id, RedirectAttributes flash) {
+//		bookServ.deleteBook(id);
+//		flash.addFlashAttribute("deleteSuccess", "you have deleted a book!");
+//		return "redirect:/books";
+//	}
 	
 	
 	

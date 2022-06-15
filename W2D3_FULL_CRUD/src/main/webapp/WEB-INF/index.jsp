@@ -22,9 +22,10 @@
 <body>
 	<div class="container">
 		<h1>All books</h1>
+		<a href="/books/new">/books/new</a>
 		<hr />
 		${allDaBooks }
-
+		<h5>${deleteSuccess }</h5>
 		<table>
 			<thead>
 				<tr>
@@ -32,6 +33,7 @@
 					<td>title</td>
 					<td>Author</td>
 					<td>pages</td>
+					<td>Actions</td>
 
 				</tr>
 			</thead>
@@ -43,6 +45,15 @@
 						<td><a href="/books/${b.getId() }"> ${b.getTitle() } </a></td>
 						<td>${b.author }</td>
 						<td>${b.pages }</td>
+						<td><a href="/books/${b.getId()}/edit">edit</a> |
+
+ 							<form action="/books/${b.id}" method="post">
+								<input type="hidden" name="_method" value="delete"> <input
+									type="submit" value="Delete">
+							</form> 
+							<!-- NEVER GO A GET FOR A DELETE -->
+							<%-- <a href="/books/${b.id}/delete">delete book</a> --%>
+						</td>
 					</tr>
 				</c:forEach>
 
@@ -51,6 +62,8 @@
 
 	</div>
 
+<script>
 
+</script>
 </body>
 </html>
