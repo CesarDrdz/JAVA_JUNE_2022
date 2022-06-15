@@ -19,12 +19,10 @@ public class ViewController {
 	}
 	
 	@RequestMapping("/")
-	public String allBooks(Model x) {
+	public String allBooks(Model model) {
 		List<Book> allDaBooks = bookService.allBooks();
 		
-		x.addAttribute("allDaBooks", allDaBooks);
-		
-		
+		model.addAttribute("allDaBooks", allDaBooks);
 		return "allBooks.jsp";
 	}
 
