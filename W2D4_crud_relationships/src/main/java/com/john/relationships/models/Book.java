@@ -4,9 +4,12 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -28,7 +31,24 @@ public class Book {
     @NotNull
     @Size(min = 5, max = 200, message = "hey this is required!!!! text!!!")
     private String title;
-	
+    
+    
+    
+    
+    
+    
+//     -- M : 1 --
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="library_id")
+    private Library library;
+    //  ==== DON'T FORGET GETTER AND SETTERS ====
+
+    
+    
+    
+    
+    
+    
     @NotBlank
     @Size(min=4, max=100)
     private String author;
@@ -107,6 +127,14 @@ public class Book {
 
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+
+	public Library getLibrary() {
+		return library;
+	}
+
+	public void setLibrary(Library library) {
+		this.library = library;
 	}
     
 }

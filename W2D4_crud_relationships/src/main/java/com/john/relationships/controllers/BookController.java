@@ -1,7 +1,6 @@
 package com.john.relationships.controllers;
 
 import java.util.List;
-import java.util.Random;
 
 import javax.validation.Valid;
 
@@ -20,13 +19,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.john.relationships.models.Book;
+import com.john.relationships.models.Library;
 import com.john.relationships.services.BookService;
+import com.john.relationships.services.LibraryService;
 
 @Controller
 public class BookController {
 	
 	@Autowired
 	private BookService bookServ;
+	@Autowired
+	private LibraryService libServ;
 	
 //	@GetMapping("/")
 //	public String index() {
@@ -72,6 +75,11 @@ public class BookController {
 //		passes all the books
 		List<Book> alldabooks = bookServ.allBooks();
 		model.addAttribute("alldabooks", alldabooks);
+		
+//		pass all the libraries
+		List<Library> allLibs = libServ.allLibraries();
+		model.addAttribute("allLibs", allLibs);
+		
 		return "/books/new.jsp";
 	}
 	
@@ -90,6 +98,8 @@ public class BookController {
 			model.addAttribute("alldabooks", alldabooks);
             return "/books/new.jsp";
         } else {
+//        	book.setAuthor(unicorn);
+//        	book.setLibrary()
         	bookServ.createBook(book);
             return "redirect:/books";
         }
@@ -113,12 +123,6 @@ public class BookController {
         if (result.hasErrors()) {
             return "/books/edit.jsp";
         } else {
-//        	find the book
-//        	System.out.println("1. " + book.getLibrary());
-//        	Book b = bookServ.findBook(book.getId());
-//        	System.out.println("2. " + b.getLibrary());
-//        	
-//        	book.setLibrary(b.getLibrary());
         	bookServ.updateBook(book);
             return "redirect:/books";
         }
@@ -133,5 +137,49 @@ public class BookController {
         return "redirect:/books";
     }
 	
+//    =========================================
+//    ========     LIBRARY       ==============
+//    =========================================
+    
+//    RENDER THE CREATE PAGE - LIBRARY
+    @GetMapping("/library/new")
+    public String newLibraryPage(@ModelAttribute("library") Library library) {
+    	
+    	return "/library/new.jsp";
+    }
+    
+    @PostMapping("/library")
+    public String createLibraryMethod(
+    		@Valid @ModelAttribute("library") Library library, 
+    		BindingResult res) {
+    	
+    	if (res.hasErrors()) {
+//    		render the page again and display errors
+    		return "/library/new.jsp";
+    	} else {
+//    		save
+    		libServ.createLibrary(library);
+    		return "redirect:/library/new";
+    	}
+    	
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 }

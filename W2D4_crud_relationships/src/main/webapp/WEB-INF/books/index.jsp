@@ -37,6 +37,7 @@
 					<th>Title</th>
 					<th>Author</th>
 					<th>pages</th>
+					<th>Library</th>
 					<th>actions</th>
 				</tr>
 			</thead>
@@ -48,6 +49,7 @@
 						<td><a href="/books/${b.id}">${b.getTitle() }</a></td>
 						<td>${b.author }</td>
 						<td>${b.pages }</td>						
+						<td>${b.library.name }</td>						
 						<td><a href="/books/${b.id }/edit">edit book</a>
 							<form action="/books/${b.id}/delete" method="post" class="form-inline">
 								<input type="hidden" name="_method" value="delete"> <input

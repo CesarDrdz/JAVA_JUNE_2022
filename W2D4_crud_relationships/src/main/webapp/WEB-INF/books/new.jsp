@@ -21,12 +21,14 @@
 <body>
 	<div class="container">
 		<h1>New Book</h1>
+		${allLibs }
 		<hr />
 		<a href="/home">/home</a>
 		<a href="/books">/books</a>
 		<p></p>
 		
-		<form:form action="/books" method="post" modelAttribute="book">
+		<form:form action="/books" method="post" 
+		modelAttribute="book">
 		<%-- <form:errors path="*"/> --%>
 			<p>
 				<form:label path="title">Title</form:label>
@@ -46,6 +48,15 @@
 			<p>
 				unicorn: <input type="text" name="unicorn" />
 			</p>
+			
+				<form:select path="library" >
+					<c:forEach items="${allLibs }" var="lib">
+						<form:option value="${lib}">
+							${lib.name }
+						</form:option>
+					</c:forEach>
+				
+				</form:select>
 			
 
 			<input type="submit" value="Submit" />
