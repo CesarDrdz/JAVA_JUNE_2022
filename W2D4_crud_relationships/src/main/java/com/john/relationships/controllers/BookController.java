@@ -96,7 +96,10 @@ public class BookController {
 		if (result.hasErrors()) {
 			List<Book> alldabooks = bookServ.allBooks();
 			model.addAttribute("alldabooks", alldabooks);
-            return "/books/new.jsp";
+//			pass all the libraries
+			List<Library> allLibs = libServ.allLibraries();
+			model.addAttribute("allLibs", allLibs);
+			return "/books/new.jsp";
         } else {
 //        	book.setAuthor(unicorn);
 //        	book.setLibrary()
@@ -119,10 +122,18 @@ public class BookController {
     @PutMapping("/books/{id}")
     public String update(
     			@Valid @ModelAttribute("book") Book book, 
-    			BindingResult result) {
+    			BindingResult result, @PathVariable("id") Long bookId) {
         if (result.hasErrors()) {
             return "/books/edit.jsp";
         } else {
+//        	Book oldBook = bookServ.findBook(bookId);
+//        	book.setLibrary(oldBook.getLibrary());
+        	
+        	
+//        	Library thisBooksLib = book.getLibrary();
+//        	 System.out.println(thisBooksLib); 
+        	
+//        	bookServ.findBook(book.getId());
         	bookServ.updateBook(book);
             return "redirect:/books";
         }

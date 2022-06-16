@@ -24,7 +24,10 @@
 	<h1>Edit Book</h1>
 	book id = ${book.id }
 	<hr />
-	<form:form action="/books/${book.id}" 
+	<p>
+		${book.library.name }
+	</p>
+	<form:form class="form border" action="/books/${book.id}" 
 				method="post"
 				modelAttribute="book">
 				
@@ -45,6 +48,11 @@
 			<form:errors path="pages" />
 			<form:input path="pages" />
 		</p>	
+		
+		<%-- <input type="hidden" name="lib" value="${book.library.id}"/> --%>
+		<!-- pass in the library of this book -->
+		<form:hidden path="library" />
+		
 		<input type="submit" value="Submit" />
 	</form:form>
 </div>
