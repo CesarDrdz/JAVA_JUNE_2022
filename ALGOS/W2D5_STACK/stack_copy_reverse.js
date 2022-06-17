@@ -5,18 +5,48 @@
 class slStack {
     constructor() {
         this.top = null; // this.head, this.end
-        this.length = 0;
     }
 
     // return a copy of the current stack, in the same order
     // you may not linearly traverse
     // you must return the current stack back to it's original order
-    copy() {    }
+    copy() {
+        let newStack = new slStack();
+        let copyStack = new slStack();
+
+        while (!this.isEmpty()) {
+            let node = this.pop();
+            newStack.push(node);
+        }
+
+        while (!newStack.isEmpty()) {
+            let node = newStack.pop();
+            this.push(node);
+            copyStack.push(new Node(node.data));
+        }
+
+        return copyStack;
+    }
 
     // reverse the order of the current stack
     // you may not linearly traverse
     // use only stacks and queues as additional storage
-    reverse() {    }
+    reverse() {
+        let queue = new Queue();
+        let reverseStack = new slStack();
+
+        while (!this.isEmpty()) {
+            let node = this.pop();
+            queue.enqueue(node);
+            reverseStack.push(new Node(node.data));
+        }
+
+        while (!queue.isEmpty()) {
+            this.push(queue.dequeue());
+        }
+
+        // return this;
+    }
 
     // add to top
     push(newNode) {
